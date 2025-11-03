@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>STC Quiz – Home</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#3b82f6",
+              secondary: "#10b981",
+            },
+            borderRadius: {
+              button: "10px",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+
+  <body class="bg-gray-50 text-gray-800">
+    <!-- HERO SECTION -->
+    <section
+      class="relative bg-gradient-to-br from-blue-50 to-indigo-100 py-20 overflow-hidden"
+    >
+      <div class="absolute inset-0 bg-white/70"></div>
+      <div class="relative max-w-6xl mx-auto px-6 text-center">
+        <h1 class="text-5xl font-bold mb-4 text-gray-900">
+          Welcome to <span class="text-primary">STC Quiz</span>
+        </h1>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-10">
+          A simple, interactive platform where teachers can set objective
+          quizzes with timers, and students can easily join and answer in
+          real-time.
+        </p>
+        <div class="flex justify-center space-x-3 text-gray-600 text-sm">
+          <div class="flex items-center space-x-1">
+            <i class="ri-timer-2-line text-primary"></i>
+            <span>Timed Quizzes</span>
+          </div>
+          <div class="flex items-center space-x-1">
+            <i class="ri-list-check-2 text-primary"></i>
+            <span>Multiple Choice</span>
+          </div>
+          <div class="flex items-center space-x-1">
+            <i class="ri-user-line text-primary"></i>
+            <span>Simple Access</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ROLE SELECTION -->
+    <section class="py-16 bg-white">
+      <div class="max-w-4xl mx-auto px-6 text-center">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">Choose Your Role</h2>
+        <p class="text-lg text-gray-600 mb-12">
+          Select whether you’re a teacher creating quizzes or a student joining
+          one.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- TEACHER -->
+          <div
+            class="bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all cursor-pointer group"
+            onclick="window.location.href='teacher.html'"
+          >
+            <div
+              class="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform"
+            >
+              <i class="ri-edit-box-line text-white text-2xl"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">
+              Teacher Portal
+            </h3>
+            <p class="text-gray-600 mb-6">
+              Create objective quizzes, set custom timers, and send them to your
+              students instantly.
+            </p>
+            <button
+              class="bg-primary text-white py-3 px-6 rounded-button font-semibold w-full hover:bg-blue-600 transition"
+            >
+              Set Questions
+            </button>
+          </div>
+
+          <!-- STUDENT -->
+          <div
+            class="bg-gradient-to-br from-green-50 to-green-100 border border-green-200 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all cursor-pointer group"
+            onclick="window.location.href='student.html'"
+          >
+            <div
+              class="w-16 h-16 bg-secondary rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform"
+            >
+              <i class="ri-graduation-cap-line text-white text-2xl"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">
+              Student Portal
+            </h3>
+            <p class="text-gray-600 mb-6">
+              Join quizzes by entering your name and chosen topic — race the
+              timer and see your score instantly.
+            </p>
+            <button
+              class="bg-secondary text-white py-3 px-6 rounded-button font-semibold w-full hover:bg-green-600 transition"
+            >
+              Answer Questions
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-50 border-t border-gray-200 py-6 text-center">
+      <p class="text-gray-500 text-sm">
+        &copy; 2025 STC Quiz. All rights reserved.
+      </p>
+    </footer>
+  </body>
+</html>
