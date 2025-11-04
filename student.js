@@ -1,8 +1,7 @@
 // ===============================
-// ✅ STUDENT.JS — Final Secure Version
+// ✅ STUDENT.JS — Final Fixed Version
 // ===============================
 
-// 🔥 Firebase imports
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
 import {
   getDatabase,
@@ -39,12 +38,13 @@ const timerDisplay = document.getElementById("timer");
 const resultSection = document.getElementById("resultSection");
 const scoreText = document.getElementById("scoreText");
 const missedDiv = document.getElementById("missedQuestions");
+const backBtn = document.getElementById("backBtn");
 
 let quizData = null;
 let timer = null;
 let timeLeft = 0;
 let quizStarted = false;
-let submitted = false; // ✅ Prevent multiple submissions
+let submitted = false;
 
 // ===============================
 // 📚 LOAD QUIZ TOPICS
@@ -84,8 +84,9 @@ topicSelect.addEventListener("change", async (e) => {
     renderQuestions(quizData.questions);
     startTimer(quizData.quizTimer || 1);
     resultSection.classList.add("hidden");
+    backBtn.classList.add("hidden");
     quizStarted = true;
-    submitted = false; // reset on new quiz
+    submitted = false;
   } else {
     alert("❌ Quiz not found for this topic.");
   }
@@ -145,7 +146,7 @@ function startTimer(minutes) {
 }
 
 // ===============================
-// 🚨 AUTO SUBMIT ON TAB SWITCH (only once)
+// 🚨 AUTO SUBMIT ON TAB SWITCH
 // ===============================
 window.addEventListener("visibilitychange", () => {
   if (document.hidden && quizStarted && !submitted && timeLeft > 0) {
@@ -155,12 +156,11 @@ window.addEventListener("visibilitychange", () => {
 });
 
 // ===============================
-// 📤 HANDLE QUIZ SUBMISSION (only once)
+// 📤 HANDLE QUIZ SUBMISSION
 // ===============================
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
-
-  if (submitted) return; // ⛔ Prevent double submission
+  if (submitted) return;
   submitted = true;
   clearInterval(timer);
 
@@ -180,7 +180,6 @@ form.addEventListener("submit", async (e) => {
   let score = 0;
   const missed = [];
 
-  // ✅ Compare answers using letters (A, B, C, D)
   quizData.questions.forEach((q, i) => {
     const selected = document.querySelector(`input[name="q${i}"]:checked`);
     const ans = selected ? selected.value : null;
@@ -209,12 +208,14 @@ form.addEventListener("submit", async (e) => {
       : "<p class='text-green-600 font-medium'>Perfect score! 🎉</p>";
 
   resultSection.classList.remove("hidden");
+  backBtn.classList.remove("hidden");
+  backBtn.disabled = false;
 
-  // 🧱 Disable form after submit
-  const inputs = form.querySelectorAll("input, select, button");
+  // 🧱 Disable form elements (but NOT back button)
+  const inputs = form.querySelectorAll("input, select, button:not(#backBtn)");
   inputs.forEach((el) => (el.disabled = true));
 
-  // ✉️ EmailJS Send
+  // ✉️ Send results via EmailJS
   try {
     await emailjs.send("service_pjmpsna", "template_rbur9zv", {
       student_name: studentName,
@@ -230,3 +231,13 @@ form.addEventListener("submit", async (e) => {
     alert("⚠️ Could not send results via email. Check console for details.");
   }
 });
+
+// ===============================
+// 🏠 BACK TO HOME BUTTON
+// ===============================
+if (backBtn) {
+  backBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.location.href = "index.html";
+  });
+}
