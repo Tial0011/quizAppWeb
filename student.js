@@ -1,5 +1,5 @@
 // ===============================
-// ✅ STUDENT.JS — Final Fixed Version
+// ✅ STUDENT.JS — Final Smooth Popup Version
 // ===============================
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
@@ -156,7 +156,7 @@ window.addEventListener("visibilitychange", () => {
 });
 
 // ===============================
-// 📤 HANDLE QUIZ SUBMISSION
+// 📤 HANDLE QUIZ SUBMISSION + POPUP
 // ===============================
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -209,13 +209,62 @@ form.addEventListener("submit", async (e) => {
 
   resultSection.classList.remove("hidden");
   backBtn.classList.remove("hidden");
-  backBtn.disabled = false;
 
-  // 🧱 Disable form elements (but NOT back button)
-  const inputs = form.querySelectorAll("input, select, button:not(#backBtn)");
-  inputs.forEach((el) => (el.disabled = true));
+  // 🧱 Disable form
+  form
+    .querySelectorAll("input, select, button")
+    .forEach((el) => (el.disabled = true));
 
-  // ✉️ Send results via EmailJS
+  // ===============================
+  // 💬 CREATE POPUP OVERLAY
+  // ===============================
+  const overlay = document.createElement("div");
+  overlay.id = "sendingOverlay";
+  overlay.style.position = "fixed";
+  overlay.style.inset = "0";
+  overlay.style.background = "rgba(0,0,0,0.5)";
+  overlay.style.display = "flex";
+  overlay.style.alignItems = "center";
+  overlay.style.justifyContent = "center";
+  overlay.style.zIndex = "9999";
+  overlay.style.opacity = "0";
+  overlay.style.transition = "opacity 0.5s ease";
+  document.body.appendChild(overlay);
+
+  // Fade in
+  requestAnimationFrame(() => {
+    overlay.style.opacity = "1";
+  });
+
+  overlay.innerHTML = `
+    <div style="
+      background: white;
+      padding: 24px;
+      border-radius: 12px;
+      width: 280px;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
+      transform: scale(0.9);
+    ">
+      <p id="sendingText" style="font-weight:600;font-size:16px;margin-bottom:10px;">📤 Sending your answers...</p>
+      <div style="width:100%;background:#eee;border-radius:8px;overflow:hidden;height:10px;">
+        <div id="progressBar" style="width:0%;height:10px;background:#3b82f6;transition:width 0.25s ease-out;"></div>
+      </div>
+    </div>
+  `;
+
+  // Animate progress slowly (fills in ~8s)
+  let progress = 0;
+  const progressInterval = setInterval(() => {
+    progress += Math.random() * 2; // slower random increase
+    if (progress > 95) progress = 95;
+    document.getElementById("progressBar").style.width = progress + "%";
+  }, 300);
+
+  // ===============================
+  // ✉️ Send Results via EmailJS
+  // ===============================
   try {
     await emailjs.send("service_pjmpsna", "template_rbur9zv", {
       student_name: studentName,
@@ -225,15 +274,32 @@ form.addEventListener("submit", async (e) => {
       to_email: quizData.teacherEmail,
     });
 
-    alert("📩 Results sent successfully to your teacher!");
+    clearInterval(progressInterval);
+    document.getElementById("progressBar").style.width = "100%";
+    document.getElementById("sendingText").textContent =
+      "✅ Sent successfully!";
+
+    setTimeout(() => {
+      overlay.style.opacity = "0";
+      setTimeout(() => overlay.remove(), 500);
+      alert("📩 Results sent successfully to your teacher!");
+    }, 1200);
   } catch (err) {
+    clearInterval(progressInterval);
+    document.getElementById("sendingText").textContent =
+      "⚠️ Failed to send. Check connection.";
+    document.getElementById("progressBar").style.background = "#ef4444";
     console.error("EmailJS Error:", err);
-    alert("⚠️ Could not send results via email. Check console for details.");
+    setTimeout(() => {
+      overlay.style.opacity = "0";
+      setTimeout(() => overlay.remove(), 500);
+    }, 2000);
+    alert("⚠️ Could not send results via email.");
   }
 });
 
 // ===============================
-// 🏠 BACK TO HOME BUTTON
+// 🏠 BACK TO HOME
 // ===============================
 if (backBtn) {
   backBtn.addEventListener("click", (e) => {
