@@ -1,5 +1,5 @@
 // ===============================
-// ✅ STUDENT.JS — Final Smooth Popup Version
+// ✅ STUDENT.JS — Final with Working Back Button
 // ===============================
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
@@ -26,7 +26,7 @@ const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
 // ✅ Initialize EmailJS
-emailjs.init("yIQvdf_m7tJlCpJKj"); // ⚡ Your EmailJS public key
+emailjs.init("yIQvdf_m7tJlCpJKj");
 
 // ===============================
 // 🔹 DOM ELEMENTS
@@ -210,7 +210,6 @@ form.addEventListener("submit", async (e) => {
   resultSection.classList.remove("hidden");
   backBtn.classList.remove("hidden");
 
-  // 🧱 Disable form
   form
     .querySelectorAll("input, select, button")
     .forEach((el) => (el.disabled = true));
@@ -231,10 +230,7 @@ form.addEventListener("submit", async (e) => {
   overlay.style.transition = "opacity 0.5s ease";
   document.body.appendChild(overlay);
 
-  // Fade in
-  requestAnimationFrame(() => {
-    overlay.style.opacity = "1";
-  });
+  requestAnimationFrame(() => (overlay.style.opacity = "1"));
 
   overlay.innerHTML = `
     <div style="
@@ -254,17 +250,13 @@ form.addEventListener("submit", async (e) => {
     </div>
   `;
 
-  // Animate progress slowly (fills in ~8s)
   let progress = 0;
   const progressInterval = setInterval(() => {
-    progress += Math.random() * 2; // slower random increase
+    progress += Math.random() * 2;
     if (progress > 95) progress = 95;
     document.getElementById("progressBar").style.width = progress + "%";
   }, 300);
 
-  // ===============================
-  // ✉️ Send Results via EmailJS
-  // ===============================
   try {
     await emailjs.send("service_pjmpsna", "template_rbur9zv", {
       student_name: studentName,
@@ -279,31 +271,42 @@ form.addEventListener("submit", async (e) => {
     document.getElementById("sendingText").textContent =
       "✅ Sent successfully!";
 
+    // 🕒 Wait, then fade & remove overlay safely
     setTimeout(() => {
       overlay.style.opacity = "0";
-      setTimeout(() => overlay.remove(), 500);
+      setTimeout(() => {
+        overlay.remove();
+        backBtn.disabled = false;
+      }, 500);
       alert("📩 Results sent successfully to your teacher!");
-    }, 1200);
+    }, 1500);
   } catch (err) {
     clearInterval(progressInterval);
     document.getElementById("sendingText").textContent =
       "⚠️ Failed to send. Check connection.";
     document.getElementById("progressBar").style.background = "#ef4444";
     console.error("EmailJS Error:", err);
+
     setTimeout(() => {
       overlay.style.opacity = "0";
-      setTimeout(() => overlay.remove(), 500);
+      setTimeout(() => {
+        overlay.remove();
+        backBtn.disabled = false;
+      }, 500);
     }, 2000);
     alert("⚠️ Could not send results via email.");
   }
 });
 
 // ===============================
-// 🏠 BACK TO HOME
+// 🏠 BACK TO HOME (always works)
 // ===============================
 if (backBtn) {
   backBtn.addEventListener("click", (e) => {
     e.preventDefault();
+    // Double safety: remove any leftover overlay first
+    const overlay = document.getElementById("sendingOverlay");
+    if (overlay) overlay.remove();
     window.location.href = "index.html";
   });
 }
