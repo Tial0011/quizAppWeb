@@ -1,0 +1,99 @@
+<!-- auth/teacher-auth.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Teacher Auth — STC Quiz</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="min-h-screen bg-gray-100 flex items-center justify-center p-6">
+    <div class="w-full max-w-md bg-white p-6 rounded-xl shadow">
+      <h2 class="text-2xl font-bold mb-4 text-center">Teacher Portal</h2>
+
+      <!-- Signup -->
+      <form id="teacher-signup" class="space-y-3">
+        <h3 class="font-semibold">Create account</h3>
+        <input
+          id="signup-name"
+          required
+          placeholder="Full name"
+          class="w-full p-2 border rounded"
+        />
+        <input
+          id="signup-email"
+          required
+          placeholder="Email"
+          type="email"
+          class="w-full p-2 border rounded"
+        />
+        <input
+          id="signup-password"
+          required
+          placeholder="Password"
+          type="password"
+          class="w-full p-2 border rounded"
+        />
+        <input
+          id="signup-stc"
+          required
+          placeholder="Secret code (eg STC001)"
+          class="w-full p-2 border rounded"
+        />
+        <div class="flex gap-2">
+          <button
+            type="submit"
+            class="flex-1 bg-blue-600 text-white py-2 rounded"
+          >
+            Create account
+          </button>
+          <button
+            type="button"
+            id="to-login"
+            class="flex-1 bg-gray-100 py-2 rounded"
+          >
+            Login
+          </button>
+        </div>
+      </form>
+
+      <!-- Login -->
+      <form id="teacher-login" class="space-y-3 hidden">
+        <h3 class="font-semibold">Login</h3>
+        <input
+          id="login-email"
+          required
+          placeholder="Email"
+          type="email"
+          class="w-full p-2 border rounded"
+        />
+        <input
+          id="login-password"
+          required
+          placeholder="Password"
+          type="password"
+          class="w-full p-2 border rounded"
+        />
+        <div class="flex gap-2">
+          <button
+            type="submit"
+            class="flex-1 bg-green-600 text-white py-2 rounded"
+          >
+            Login
+          </button>
+          <button
+            type="button"
+            id="to-signup"
+            class="flex-1 bg-gray-100 py-2 rounded"
+          >
+            Sign up
+          </button>
+        </div>
+      </form>
+
+      <p id="auth-feedback" class="text-sm text-red-600 mt-3"></p>
+    </div>
+
+    <script type="module" src="../js/teacher-auth.js"></script>
+  </body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Teacher Dashboard - STC</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body class="bg-gray-100">
+    <div class="flex">
+      <aside class="w-64 bg-white h-screen shadow-md p-6">
+        <h2 class="text-2xl font-bold mb-10">Teacher Panel</h2>
+
+        <nav class="space-y-4">
+          <span class="block text-blue-600 font-semibold">Dashboard</span>
+
+          <a
+            href="./teacher-create-quiz.html"
+            class="block hover:text-blue-600"
+          >
+            Create Quiz
+          </a>
+
+          <!-- <a
+            href="./teacher-add-questions.html"
+            class="block hover:text-blue-600"
+          > -->
+            <!-- Add Questions -->
+          </a>
+
+          <a
+            href="./teacher-view-results.html"
+            class="block hover:text-blue-600"
+          >
+            View Results
+          </a>
+
+          <button
+            id="logoutBtn"
+            class="mt-10 w-full bg-red-500 text-white py-2 rounded-lg hover:bg-red-600"
+          >
+            Logout
+          </button>
+        </nav>
+      </aside>
+
+      <main class="flex-1 p-8">
+        <h1 class="text-3xl font-bold mb-6">
+          Welcome, <span id="teacherName">...</span> 👋
+        </h1>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+          <div class="bg-white p-6 rounded shadow">
+            <h3 class="text-gray-600">Quizzes Created</h3>
+            <p id="quizCount" class="text-3xl font-bold mt-2">0</p>
+          </div>
+
+          <div class="bg-white p-6 rounded shadow">
+            <h3 class="text-gray-600">Students Answered</h3>
+            <p id="submissionCount" class="text-3xl font-bold mt-2">0</p>
+          </div>
+
+          <div class="bg-white p-6 rounded shadow">
+            <h3 class="text-gray-600">Department / Class</h3>
+            <p id="teacherDeptClass" class="text-lg font-semibold mt-2">-</p>
+          </div>
+        </div>
+
+        <h2 class="text-xl font-bold mb-4">Recent Quizzes</h2>
+
+        <div class="bg-white rounded shadow overflow-x-auto">
+          <table class="min-w-full text-left">
+            <thead class="bg-gray-200">
+              <tr>
+                <th class="p-3">Quiz Title</th>
+                <th class="p-3">Department</th>
+                <th class="p-3">Class</th>
+                <th class="p-3">Duration</th>
+              </tr>
+            </thead>
+            <tbody id="quizList"></tbody>
+          </table>
+        </div>
+      </main>
+    </div>
+
+    <script type="module" src="../js/firebase-config.js"></script>
+    <script type="module" src="../js/teacher-dashboard.js"></script>
+  </body>
+</html>

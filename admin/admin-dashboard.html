@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Admin Dashboard — STC Quiz</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body class="bg-gray-100 min-h-screen flex">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-white border-r p-6">
+      <h2 class="text-2xl font-bold text-blue-600 mb-6">Admin Panel</h2>
+
+      <nav class="space-y-3">
+        <a class="font-bold text-blue-600 block">Dashboard</a>
+        <a href="admin-manage-teachers.html" class="block">Manage Teachers</a>
+        <a href="admin-manage-students.html" class="block">Manage Students</a>
+        <a href="admin-manage-departments.html" class="block">Departments</a>
+        <a href="admin-settings.html" class="block">Settings</a>
+      </nav>
+
+      <button
+        id="logoutBtn"
+        class="mt-6 w-full bg-red-500 text-white py-2 rounded"
+      >
+        Logout
+      </button>
+    </aside>
+
+    <!-- Main -->
+    <main class="flex-1 p-8">
+      <h1 class="text-3xl font-bold mb-6">Dashboard Overview</h1>
+
+      <!-- Stats -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+        <div class="bg-white p-6 rounded shadow text-center">
+          <h3 class="text-gray-500">Teachers</h3>
+          <p id="teacherCount" class="text-3xl font-bold mt-2">0</p>
+        </div>
+
+        <div class="bg-white p-6 rounded shadow text-center">
+          <h3 class="text-gray-500">Students</h3>
+          <p id="studentCount" class="text-3xl font-bold mt-2">0</p>
+        </div>
+
+        <div class="bg-white p-6 rounded shadow text-center">
+          <h3 class="text-gray-500">Total Quizzes</h3>
+          <p id="quizCount" class="text-3xl font-bold mt-2">0</p>
+        </div>
+      </div>
+
+      <!-- Recent Quizzes -->
+      <h2 class="text-xl font-bold mb-3">Recent Quizzes</h2>
+
+      <div class="bg-white rounded shadow overflow-x-auto">
+        <table class="min-w-full text-left">
+          <thead class="bg-gray-200">
+            <tr>
+              <th class="p-3">Title</th>
+              <th class="p-3">Teacher</th>
+              <th class="p-3">Department</th>
+              <th class="p-3">Class</th>
+            </tr>
+          </thead>
+          <tbody id="quizList"></tbody>
+        </table>
+      </div>
+    </main>
+
+    <script type="module" src="../js/admin-dashboard.js"></script>
+  </body>
+</html>

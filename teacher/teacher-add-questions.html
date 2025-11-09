@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Questions - STC</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body class="bg-gray-100 p-8">
+    <div class="max-w-2xl mx-auto bg-white p-6 rounded shadow">
+      <h1 class="text-2xl font-bold mb-4">
+        Add Questions to: <span id="quizTitle" class="text-blue-600"></span>
+      </h1>
+
+      <form id="questionForm" class="space-y-3">
+        <input
+          id="question"
+          placeholder="Question text..."
+          class="w-full border p-2 rounded"
+        />
+
+        <div class="grid grid-cols-2 gap-3">
+          <input
+            id="option1"
+            placeholder="Option 1"
+            class="border p-2 rounded"
+          />
+          <input
+            id="option2"
+            placeholder="Option 2"
+            class="border p-2 rounded"
+          />
+          <input
+            id="option3"
+            placeholder="Option 3"
+            class="border p-2 rounded"
+          />
+          <input
+            id="option4"
+            placeholder="Option 4"
+            class="border p-2 rounded"
+          />
+        </div>
+
+        <select id="correct" class="w-full border p-2 rounded">
+          <option value="">Correct Option</option>
+          <option value="0">Option 1</option>
+          <option value="1">Option 2</option>
+          <option value="2">Option 3</option>
+          <option value="3">Option 4</option>
+        </select>
+
+        <button
+          class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded w-full"
+        >
+          Add Question
+        </button>
+      </form>
+
+      <p id="status" class="text-center mt-4 text-gray-600"></p>
+
+      <button
+        id="finishBtn"
+        class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded w-full mt-6"
+      >
+        Finish Quiz
+      </button>
+
+      <a
+        href="./teacher-dashboard.html"
+        class="block text-center mt-6 text-blue-600 hover:underline"
+        >Return to Dashboard</a
+      >
+    </div>
+
+    <script type="module" src="../js/firebase-config.js"></script>
+    <script type="module" src="../js/teacher-add-questions.js"></script>
+  </body>
+</html>

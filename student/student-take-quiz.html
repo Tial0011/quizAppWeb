@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Take Quiz - STC</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100 min-h-screen">
+    <div class="p-4 bg-white shadow flex justify-between items-center">
+      <div>
+        <button onclick="history.back()" class="text-sm text-gray-700">
+          ← Back
+        </button>
+      </div>
+      <div id="statusArea" class="text-sm text-gray-700"></div>
+    </div>
+
+    <main class="p-6 max-w-3xl mx-auto">
+      <div id="quizSelection" class="mb-6 bg-white p-4 rounded shadow">
+        <h2 class="font-semibold mb-2">Select a quiz</h2>
+        <div id="quizList"></div>
+      </div>
+
+      <div id="quizBox" class="hidden bg-white p-6 rounded shadow">
+        <div class="flex justify-between items-center mb-4">
+          <h2 id="quizTitle" class="text-xl font-bold"></h2>
+          <div class="text-sm text-gray-600">
+            Time left: <span id="timer">--:--</span>
+          </div>
+        </div>
+
+        <div id="questionArea" class="space-y-4"></div>
+
+        <div class="flex justify-between mt-4">
+          <button id="prevBtn" class="px-4 py-2 bg-gray-200 rounded">
+            Previous
+          </button>
+          <div>
+            <button
+              id="nextBtn"
+              class="px-4 py-2 bg-blue-600 text-white rounded"
+            >
+              Next
+            </button>
+            <button
+              id="submitBtn"
+              class="px-4 py-2 bg-green-600 text-white rounded hidden"
+            >
+              Submit
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script type="module" src="../js/student-take-quiz.js"></script>
+  </body>
+</html>

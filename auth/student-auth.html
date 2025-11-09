@@ -1,0 +1,94 @@
+<!-- auth/student-auth.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Student Auth - STC Quiz</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="min-h-screen flex items-center justify-center bg-gray-100 p-6">
+    <div class="bg-white p-6 rounded shadow-md w-full max-w-md">
+      <h2 class="text-2xl font-bold mb-4">Student Portal</h2>
+
+      <!-- Signup -->
+      <form id="student-signup" class="space-y-3">
+        <input
+          id="signup-name"
+          placeholder="Full name"
+          class="w-full p-2 border rounded"
+          required
+        />
+        <input
+          id="signup-email"
+          type="email"
+          placeholder="Email"
+          class="w-full p-2 border rounded"
+          required
+        />
+        <select id="signup-dept" class="w-full p-2 border rounded" required>
+          <option value="">Select department</option>
+          <option>MBBS</option>
+          <option>Nursing</option>
+          <option>MLS</option>
+        </select>
+        <select id="signup-class" class="w-full p-2 border rounded" required>
+          <option value="">Select class</option>
+          <option>100L</option>
+          <option>200L</option>
+          <option>300L</option>
+          <option>400L</option>
+          <option>500L</option>
+        </select>
+        <input
+          id="signup-password"
+          type="password"
+          placeholder="Password"
+          class="w-full p-2 border rounded"
+          required
+        />
+        <button type="submit" class="w-full bg-blue-600 text-white p-2 rounded">
+          Create Student Account
+        </button>
+        <p class="text-sm text-center">
+          Already registered?
+          <span id="show-login" class="text-blue-600 cursor-pointer"
+            >Login</span
+          >
+        </p>
+      </form>
+
+      <!-- Login -->
+      <form id="student-login" class="space-y-3 hidden">
+        <input
+          id="login-email"
+          type="email"
+          placeholder="Email"
+          class="w-full p-2 border rounded"
+          required
+        />
+        <input
+          id="login-password"
+          type="password"
+          placeholder="Password"
+          class="w-full p-2 border rounded"
+          required
+        />
+        <button
+          type="submit"
+          class="w-full bg-green-600 text-white p-2 rounded"
+        >
+          Login
+        </button>
+        <p class="text-sm text-center">
+          No account?
+          <span id="show-signup" class="text-blue-600 cursor-pointer"
+            >Create one</span
+          >
+        </p>
+      </form>
+    </div>
+
+    <script type="module" src="../js/student-auth.js"></script>
+  </body>
+</html>

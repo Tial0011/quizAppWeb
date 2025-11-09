@@ -1,129 +1,248 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>STC Quiz – Home</title>
+
+    <!-- Tailwind CDN -->
     <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+
+    <!-- Icons -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
     />
+
     <script>
       tailwind.config = {
         theme: {
           extend: {
-            colors: {
-              primary: "#3b82f6",
-              secondary: "#10b981",
-            },
-            borderRadius: {
-              button: "10px",
-            },
+            colors: { primary: "#3b82f6", secondary: "#10b981" },
+            borderRadius: { button: "10px" },
           },
         },
       };
     </script>
   </head>
+  <body class="bg-gray-50 text-gray-800 antialiased">
+    <!-- NAV (small, optional) -->
+    <nav class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div
+          class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center text-white"
+        >
+          <i class="ri-questionnaire-line text-lg"></i>
+        </div>
+        <div>
+          <div class="text-lg font-semibold">STC Quiz</div>
+          <div class="text-xs text-gray-500">
+            Interactive quizzes for students & teachers
+          </div>
+        </div>
+      </div>
 
-  <body class="bg-gray-50 text-gray-800">
-    <!-- HERO SECTION -->
-    <section
-      class="relative bg-gradient-to-br from-blue-50 to-indigo-100 py-20 overflow-hidden"
-    >
-      <div class="absolute inset-0 bg-white/70"></div>
-      <div class="relative max-w-6xl mx-auto px-6 text-center">
-        <h1 class="text-5xl font-bold mb-4 text-gray-900">
-          Welcome to <span class="text-primary">STC Quiz</span>
-        </h1>
-        <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-10">
-          A simple, interactive platform where teachers can set objective
-          quizzes with timers, and students can easily join and answer in
-          real-time.
-        </p>
-        <div class="flex justify-center space-x-3 text-gray-600 text-sm">
-          <div class="flex items-center space-x-1">
-            <i class="ri-timer-2-line text-primary"></i>
-            <span>Timed Quizzes</span>
+      <div class="hidden sm:flex items-center space-x-4 text-sm">
+        <a href="#" class="text-gray-600 hover:text-primary">Docs</a>
+        <a href="auth/admin-auth.html" class="text-gray-600 hover:text-primary"
+          >Admin</a
+        >
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="relative overflow-hidden">
+      <div class="bg-gradient-to-br from-blue-50 to-indigo-100">
+        <div class="max-w-6xl mx-auto px-6 py-20 relative">
+          <div class="max-w-3xl mx-auto text-center relative z-10">
+            <h1
+              class="text-4xl sm:text-5xl font-extrabold text-gray-900 leading-tight mb-4"
+            >
+              Welcome to <span class="text-primary">STC Quiz</span>
+            </h1>
+            <p class="text-lg text-gray-600 mb-8">
+              A simple, mobile-friendly platform where teachers create timed
+              multiple-choice quizzes and students join to take them in real
+              time.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-3 justify-center">
+              <a
+                href="auth/teacher-auth.html"
+                class="inline-flex items-center gap-2 bg-primary text-white px-5 py-3 rounded-button shadow hover:bg-blue-600"
+              >
+                <i class="ri-edit-box-line"></i>
+                Teacher Portal
+              </a>
+
+              <a
+                href="auth/student-auth.html"
+                class="inline-flex items-center gap-2 bg-white border border-gray-200 px-5 py-3 rounded-button shadow hover:shadow-md"
+              >
+                <i class="ri-graduation-cap-line text-primary"></i>
+                Student Portal
+              </a>
+
+              <a
+                href="auth/admin-auth.html"
+                class="inline-flex items-center gap-2 bg-transparent border-2 border-primary text-primary px-5 py-3 rounded-button hover:bg-primary hover:text-white transition"
+              >
+                <i class="ri-shield-user-line"></i>
+                Admin
+              </a>
+            </div>
           </div>
-          <div class="flex items-center space-x-1">
-            <i class="ri-list-check-2 text-primary"></i>
-            <span>Multiple Choice</span>
+
+          <!-- subtle decorative shapes -->
+          <div
+            class="pointer-events-none hidden lg:block absolute right-10 top-8 w-72 h-72 bg-white/50 rounded-2xl blur-3xl"
+          ></div>
+        </div>
+      </div>
+    </header>
+
+    <!-- FEATURES -->
+    <section class="py-12">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-white rounded-xl p-6 shadow-sm">
+            <div class="flex items-center mb-4">
+              <div
+                class="w-10 h-10 bg-blue-50 rounded-md flex items-center justify-center mr-3"
+              >
+                <i class="ri-timer-2-line text-primary"></i>
+              </div>
+              <h4 class="font-semibold">Timed Quizzes</h4>
+            </div>
+            <p class="text-sm text-gray-600">
+              Set custom timers per quiz to keep sessions tight and fair.
+            </p>
           </div>
-          <div class="flex items-center space-x-1">
-            <i class="ri-user-line text-primary"></i>
-            <span>Simple Access</span>
+
+          <div class="bg-white rounded-xl p-6 shadow-sm">
+            <div class="flex items-center mb-4">
+              <div
+                class="w-10 h-10 bg-green-50 rounded-md flex items-center justify-center mr-3"
+              >
+                <i class="ri-list-check-2 text-secondary"></i>
+              </div>
+              <h4 class="font-semibold">MCQ — Auto Scoring</h4>
+            </div>
+            <p class="text-sm text-gray-600">
+              Multiple-choice questions scored automatically. Teachers get
+              results in dashboard.
+            </p>
+          </div>
+
+          <div class="bg-white rounded-xl p-6 shadow-sm">
+            <div class="flex items-center mb-4">
+              <div
+                class="w-10 h-10 bg-purple-50 rounded-md flex items-center justify-center mr-3"
+              >
+                <i class="ri-bar-chart-line text-purple-600"></i>
+              </div>
+              <h4 class="font-semibold">Progress Tracking</h4>
+            </div>
+            <p class="text-sm text-gray-600">
+              Teachers and admin can track student progress over time (charts
+              later).
+            </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ROLE SELECTION -->
-    <section class="py-16 bg-white">
-      <div class="max-w-4xl mx-auto px-6 text-center">
-        <h2 class="text-3xl font-bold text-gray-900 mb-4">Choose Your Role</h2>
-        <p class="text-lg text-gray-600 mb-12">
-          Select whether you’re a teacher creating quizzes or a student joining
-          one.
-        </p>
+    <!-- ROLE CARDS (duplicate of hero CTA but larger) -->
+    <section class="py-12 bg-white border-t">
+      <div class="max-w-6xl mx-auto px-6">
+        <h3 class="text-2xl font-bold mb-6 text-gray-900 text-center">
+          Pick a portal to continue
+        </h3>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <!-- TEACHER -->
-          <div
-            class="bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all cursor-pointer group"
-            onclick="window.location.href='teacher.html'"
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <article
+            class="p-6 rounded-2xl border border-gray-100 bg-gradient-to-br from-blue-50 to-blue-100"
           >
-            <div
-              class="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform"
-            >
-              <i class="ri-edit-box-line text-white text-2xl"></i>
+            <div class="flex items-center mb-4">
+              <div
+                class="w-14 h-14 rounded-xl bg-primary flex items-center justify-center text-white mr-4"
+              >
+                <i class="ri-edit-box-line text-2xl"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-900">Teacher</h4>
+                <p class="text-sm text-gray-600">
+                  Create quizzes, view results and track students.
+                </p>
+              </div>
             </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-3">
-              Teacher Portal
-            </h3>
-            <p class="text-gray-600 mb-6">
-              Create objective quizzes, set custom timers, and send them to your
-              students instantly.
-            </p>
-            <button
-              class="bg-primary text-white py-3 px-6 rounded-button font-semibold w-full hover:bg-blue-600 transition"
+            <a
+              href="auth/teacher-auth.html"
+              class="block mt-4 w-full text-center bg-primary text-white py-2 rounded-button"
+              >Go to Teacher</a
             >
-              Set Questions
-            </button>
-          </div>
+          </article>
 
-          <!-- STUDENT -->
-          <div
-            class="bg-gradient-to-br from-green-50 to-green-100 border border-green-200 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all cursor-pointer group"
-            onclick="window.location.href='student.html'"
+          <article
+            class="p-6 rounded-2xl border border-gray-100 bg-gradient-to-br from-green-50 to-green-100"
           >
-            <div
-              class="w-16 h-16 bg-secondary rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform"
-            >
-              <i class="ri-graduation-cap-line text-white text-2xl"></i>
+            <div class="flex items-center mb-4">
+              <div
+                class="w-14 h-14 rounded-xl bg-secondary flex items-center justify-center text-white mr-4"
+              >
+                <i class="ri-graduation-cap-line text-2xl"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-900">Student</h4>
+                <p class="text-sm text-gray-600">
+                  Sign up / login, join quizzes and see personal progress.
+                </p>
+              </div>
             </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-3">
-              Student Portal
-            </h3>
-            <p class="text-gray-600 mb-6">
-              Join quizzes by entering your name and chosen topic — race the
-              timer and see your score instantly.
-            </p>
-            <button
-              class="bg-secondary text-white py-3 px-6 rounded-button font-semibold w-full hover:bg-green-600 transition"
+            <a
+              href="auth/student-auth.html"
+              class="block mt-4 w-full text-center bg-secondary text-white py-2 rounded-button"
+              >Go to Student</a
             >
-              Answer Questions
-            </button>
-          </div>
+          </article>
+
+          <article class="p-6 rounded-2xl border border-gray-100 bg-white">
+            <div class="flex items-center mb-4">
+              <div
+                class="w-14 h-14 rounded-xl bg-gray-100 flex items-center justify-center text-gray-700 mr-4"
+              >
+                <i class="ri-shield-user-line text-2xl"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-900">Admin</h4>
+                <p class="text-sm text-gray-600">
+                  Manage teachers, students, departments and app settings.
+                </p>
+              </div>
+            </div>
+            <a
+              href="auth/admin-auth.html"
+              class="block mt-4 w-full text-center border-2 border-primary text-primary py-2 rounded-button"
+              >Go to Admin</a
+            >
+          </article>
         </div>
       </div>
     </section>
 
     <!-- FOOTER -->
-    <footer class="bg-gray-50 border-t border-gray-200 py-6 text-center">
-      <p class="text-gray-500 text-sm">
-        &copy; 2025 STC Quiz. All rights reserved.
-      </p>
+    <footer class="py-8 text-center text-gray-500">
+      <div class="max-w-6xl mx-auto px-6">
+        <p>
+          &copy; <span id="year"></span> STC Quiz. Built with ❤️ — mobile
+          friendly.
+        </p>
+      </div>
     </footer>
+
+    <script>
+      // set current year
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
   </body>
 </html>

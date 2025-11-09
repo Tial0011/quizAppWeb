@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Manage Students — STC Quiz</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body class="bg-gray-100 min-h-screen flex">
+    <aside class="w-64 bg-white border-r p-6">
+      <h2 class="text-2xl font-bold text-blue-600 mb-6">Admin Panel</h2>
+
+      <nav class="space-y-3">
+        <a href="admin-dashboard.html" class="block">Dashboard</a>
+        <a href="admin-manage-teachers.html" class="block">Manage Teachers</a>
+        <a class="font-bold text-blue-600 block">Manage Students</a>
+        <a href="admin-manage-departments.html" class="block">Departments</a>
+        <a href="admin-settings.html" class="block">Settings</a>
+      </nav>
+
+      <button
+        id="logoutBtn"
+        class="mt-6 w-full bg-red-500 text-white py-2 rounded"
+      >
+        Logout
+      </button>
+    </aside>
+
+    <main class="flex-1 p-8 max-w-3xl mx-auto">
+      <h1 class="text-3xl font-bold mb-6">Manage Students</h1>
+
+      <div class="bg-white p-6 rounded shadow mb-8">
+        <h2 class="text-xl font-semibold mb-3">Add Student</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <input id="name" placeholder="Full Name" class="p-2 border rounded" />
+          <input id="email" placeholder="Email" class="p-2 border rounded" />
+          <input
+            id="department"
+            placeholder="Department"
+            class="p-2 border rounded"
+          />
+          <input
+            id="classLevel"
+            placeholder="Class"
+            class="p-2 border rounded"
+          />
+        </div>
+
+        <button
+          id="addBtn"
+          class="mt-4 bg-blue-600 text-white px-4 py-2 rounded w-full"
+        >
+          Add Student
+        </button>
+      </div>
+
+      <div class="bg-white p-6 rounded shadow">
+        <h2 class="text-xl font-semibold mb-3">All Students</h2>
+        <div id="studentList" class="space-y-3"></div>
+      </div>
+    </main>
+
+    <script type="module" src="../js/admin-manage-students.js"></script>
+  </body>
+</html>
